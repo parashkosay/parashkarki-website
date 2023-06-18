@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chatbot Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .chat-logs {
+        flex-grow: 1;
+        overflow-y: scroll;
+        padding: 1rem;
+        background-color: #f7f7f7;
+      }
+      .chat {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+      .self {
+        flex-direction: row-reverse;
+      }
+      .user-photo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+      .chat-message {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+        max-width: 60%;
+      }
+      .chat-message:last-child {
+        margin-bottom: 0;
+      }
+      .chat-form {
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.1);
+      }
+      .chat-input {
+        flex-grow: 1;
+        margin-right: 1rem;
+        border: none;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 1rem;
+        background-color: #f7f7f7;
+      }
+      .send-button {
+        border: none;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      .send-button:hover {
+        background-color: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-logs" id="chatlogs"></div>
+      <form class="chat-form">
+        <input class="chat-input" id="chatinput" placeholder="Type a message..." />
+        <button class="send-button" id="sendbutton" type="submit">Send</button>
+      </form>
+    </div>
+
+    <script>
+  const chatlogs = document.getElementById("chatlogs");
+const chatinput = document.getElementById("chatinput");
+const sendbutton = document.getElementById("sendbutton");
+
+sendbutton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const userMessage = chatinput.value.toLowerCase(); // Convert to lowercase
+  appendMessage(userMessage, "self");
+
+  // Check for keywords in user's message (all in lowercase)
+  if (userMessage.includes("hello")) {
+    appendMessage("Hello there!", "bot");
+  }
+  else if (userMessage.includes("what is computer?")) {
+      appendMessage("A computer is an electronic device that is designed to accept data, process it, and provide output based on the stored instructions and data. It can perform a wide range of tasks, including computation, communication, data storage, and multimedia processing.", "bot");
+    } 
+
+// Question 1
+else if (userMessage.includes("What is the chemical symbol for gold?")) {
+  appendMessage("The chemical symbol for gold is Au.", "bot");
+}
+
+// Question 2
+else if (userMessage.includes("What is the largest planet in our solar system?")) {
+  appendMessage("The largest planet in our solar system is Jupiter.", "bot");
+}
+
+// Question 3
+else if (userMessage.includes("What is the name of the closest star to Earth?")) {
+  appendMessage("The closest star to Earth is Proxima Centauri.", "bot");
+}
+
+// Question 4
+else if (userMessage.includes("What is the process by which plants make their own food?")) {
+  appendMessage("The process by which plants make their own food is called photosynthesis.", "bot");
+}
+
+// Question 5
+else if (userMessage.includes("What is the smallest country in the world by land area?")) {
+  appendMessage("The smallest country in the world by land area is Vatican City.", "bot");
+}
+
+// Question 6
+else if (userMessage.includes("What is the name of the tallest mountain in the world?")) {
+  appendMessage("The name of the tallest mountain in the world is Mount Everest.", "bot");
+}
+
+// Question 7
+else if (userMessage.includes("What is the name of the biggest ocean on Earth?")) {
+  appendMessage("The name of the biggest ocean on Earth is the Pacific Ocean.", "bot");
+}
+
+// Question 8
+else if (userMessage.includes("What is the name of the device used to measure wind speed?")) {
+  appendMessage("The name of the device used to measure wind speed is an anemometer.", "bot");
+}
+
+// Question 9
+else if (userMessage.includes("What is the name of the planet humans have set foot on?")) {
+  appendMessage("The name of the planet humans have set foot on is Earth.", "bot");
+}
+
+// Question 10
+else if (userMessage.includes("What is the name of the largest bone in the human body?")) {
+  appendMessage("The name of the largest bone in the human body is the femur.", "bot");
+}
+
+// Question 11
+else if (userMessage.includes("What is the name of the gas that makes up the majority of Earth's atmosphere?")) {
+  appendMessage("The name of the gas that makes up the majority of Earth's atmosphere is nitrogen.", "bot");
+}
+
+// Question 12
+else if (userMessage.includes("What is the name of the first man to walk on the moon?")) {
+  appendMessage("The name of the first man to walk on the moon is Neil Armstrong.", "bot");
+}
+
+// Question 13
+else if (userMessage.includes("What is the name of the closest planet to the sun?")) {
+  appendMessage("The name of the closest planet to the sun is Mercury.", "bot");
+}
+
+// Question 14
+else if (userMessage.includes("What is the name of the largest animal on Earth?")) {
+  appendMessage("The name of the largest animal on Earth is the blue whale.", "bot");
+}
+
+// Question 15
+else if (userMessage.includes("What is the name of the device used to measure air pressure?")) {
+  appendMessage("The name of the device used to measure air pressure is a barometer.", "bot");
+}
+
+// Question 16
+else if (userMessage.includes("What is the name of the process by which water turns into water vapor?")) {
+  appendMessage("The name of the process by which water turns into water vapor is called evaporation ", "bot");
+    }
+
+  
+  
+  
+  else if (userMessage.includes("goodbye")) {
+    appendMessage("Goodbye!", "bot");
+  } else if (userMessage.includes("help")) {
+    appendMessage("How can I help you?", "bot");
+  } else {
+    appendMessage("I'm sorry, I don't understand. Can you try again?", "bot");
+  }
+
+  chatinput.value = "";
+  chatlogs.scrollTop = chatlogs.scrollHeight;
+});
+
+function appendMessage(message, sender) {
+  const chat = document.createElement("div");
+  chat.classList.add("chat");
+  if (sender === "self") {
+    chat.classList.add("self");
+    chat.innerHTML = `
+      <div class="chat-message">
+        <p>${message}</p>
+      </div>
+      <div class="user-photo">
+        <img src="assets/img/user.jpeg" alt="User Photo">
+      </div>
+    `;
+  } else {
+    chat.innerHTML = `
+      <div class="user-photo">
+        <img src="https://via.placeholder.com/50x50" alt="Bot Photo">
+      </div>
+      <div class="chat-message">
+        <p>${message}</p>
+      </div>
+    `;
+  }
+  chatlogs.appendChild(chat);
+}
+
+</script>
+</body>
+</html>

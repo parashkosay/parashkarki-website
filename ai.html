@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>AI Chatbot</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      .chat-container {
+        border: 1px solid #ccc;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .chat-header {
+        background-color: black;
+        padding: 10px;
+      }
+
+      .chat-header h1 {
+color: white;
+        margin: 0;
+      }
+
+      .chat-history {
+        height: 300px;
+        overflow: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+      }
+
+      .chat-input {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .chat-input input[type="text"] {
+        flex: 1;
+        margin-right: 5px;
+        padding: 10px;
+      }
+
+      .chat-input button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: 80px;
+      }
+
+      .chat-input button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">
+        <h1>AI ChatParash</h1>
+      </div>
+      <div class="chat-history" id="chat-history"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button id="send-btn" onclick="generateAnswer()">Ask</button>
+      </div>
+    </div>
+ <script>
+
+function getResponse(message) {
+  var response = "";
+  if (message.includes("what is your name")) {
+    response = "My name is Parash Karki.";
+  } else if (message.includes("how old are you")) {
+    response = "I am 18 years old.";
+  } else if (message.includes("what is the weather like")) {
+    response = "I'm sorry, I don't know. Please check a weather app.";
+  } else if (message.includes("what time is it")) {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var timeString = hours + ":" + minutes;
+    response = "It is currently " + timeString;
+  } else {
+    response = "I'm sorry, I don't understand.";
+  }
+  return response;
+}
+
+
+      // Internal JavaScript
+      function generateAnswer() {
+        let question = document.getElementById("question").value;
+        let answer = "";
+
+        // GK Questions
+        if (question.includes("capital of Nepal")) {
+          answer = "The capital of Nepal is Kathmandu.";
+        } else if (question.includes("largest country in the world")) {
+          answer = "Russia is the largest country in the world.";
+        } else if (question.includes("who discovered electricity")) {
+          answer = "Benjamin Franklin is often credited with discovering electricity.";
+        } else if (question.includes("what is photosynthesis")) {
+          answer = "Photosynthesis is the process by which plants convert light energy into chemical energy.";
+        } else if (question.includes("what is the formula for water")) {
+          answer = "The formula for water is H2O.";
+        } else if (question.includes("who painted the Mona Lisa")) {
+          answer = "Leonardo da Vinci painted the Mona Lisa.";
+        } else if (question.includes("what is the largest organ in the human body")) {
+          answer = "The skin is the largest organ in the human body.";
+        } else if (question.includes("who invented the telephone")) {
+          answer = "Alexander Graham Bell is credited with inventing the telephone.";
+        } else if (question.includes("what is the currency of Japan")) {
+          answer = "The currency of Japan is the yen.";
+        } else if (question.includes("what is the largest ocean in the world")) {
+          answer = "The Pacific Ocean is the largest ocean in the world.";
+        } else if (question.includes("who are you")) {
+          answer = "My name is Parash Karki. I'm 17 years old and I'm a data scientist.";
+        } else if (question.includes("add")) {
+          let nums = question.match(/\d+/g);
+          answer = Number(nums[0]) + Number(nums[1]);
+        } else if (question.includes("subtract")) {
+          let nums = question.match(/\d+/g);
+          answer = Number(nums[0]) - Number(nums[1]);
+        } else if (question.includes("multiply")) {
+          let nums = question.match(/\d+/g);
+          answer = Number(nums[0]) * Number(nums[1]);
+        } else if (question.includes("divide")) {
+          let nums = question.match(/\d+/g);
+          answer = Number(nums[0]) / Number(nums[1]);
+        } else {
+          // Random Response
+          let
+      let responses = [
+        "I'm sorry, I don't know the answer to that.",
+        "Could you please rephrase your question?",
+        "I'm not sure what you're asking.",
+        "I'm still learning and don't know everything yet."
+      ];
+      answer = responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    // Poems, Stories, and Jokes
+    let randomNum = Math.floor(Math.random() * 3) + 1;
+    if (randomNum === 1) {
+      answer += " Roses are red, violets are blue, sugar is sweet, and so are you.";
+    } else if (randomNum === 2) {
+      answer += " Once upon a time, there was a little girl named Goldilocks who went for a walk in the forest.";
+    } else {
+      answer += " Why was the math book sad? Because it had too many problems.";
+    }
+
+    document.getElementById("answer").innerHTML = answer;
+  }
+
+      // Initialize the chat history
+      const chatHistory = document.getElementById("chat-history");
+
+      // Listen for click events on the send button
+      const sendBtn = document.getElementById("send-btn");
+      sendBtn.addEventListener("click", sendMessage);
+
+      // Listen for enter keypress events on the input field
+      const userInput = document.getElementById("user-input");
+      userInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      // Function to send user message and get AI response
+      function sendMessage() {
+        // Get the user input and clear the input field
+        const userMessage = userInput.value;
+        userInput.value = "";
+
+        // Add user message to the chat history
+        addMessageToChat("user", userMessage);
+
+       
+      
+
+ const responses = {
+        "who are you": "My name is Parash Karki and I'm a 17-year-old data scientist.",
+        "what is the capital of France": "Paris",
+        "who discovered penicillin": "Alexander Fleming",
+
+        // ... add more responses here
+      };
+      
+      const jokes = [
+        "Why did the tomato turn red? Because it saw the salad dressing!",
+        "Why did the chicken cross the playground? To get
+};
+const response  = [ "Who is the father of Science?" " Albert Einstien is known as the father of scinece";
+        // Add AI response to the chat history
+        addMessageToChat("ai", aiResponse);
+      }
+
+      // Function to add message to the chat history
+      function addMessageToChat(sender, message) {
+        const messageElem = document.createElement("div");
+        messageElem.classList.add("chat-message");
+        messageElem.classList.add(sender === "user" ? "user-message" : "ai-message");
+        messageElem.textContent = message;
+        chatHistory.appendChild(messageElem);
+      }
+    </script>
+  </body>
+</html>
